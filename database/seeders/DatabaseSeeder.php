@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'role' => 'admin',
             'email_verified_at' => '2021-04-30 14:00:00',
-            'remember_token' => '1'
+            'remember_token' => Str::random(10)
         ]);
 
         Role::create(['name' => 'admin']);
