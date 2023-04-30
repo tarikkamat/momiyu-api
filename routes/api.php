@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -15,13 +16,17 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function() {
-    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('logout', [AuthController::class, 'logout']);
+
+    Route::prefix('categories')->group(function() {
+        Route::get('/', [CategoryController::class, 'getAllCategories']);
+    });
 });
 
-Route::get('/check', function () {
+Route::get('check', function () {
     return response()->json([
         'message' => 'Running',
     ], 200);
