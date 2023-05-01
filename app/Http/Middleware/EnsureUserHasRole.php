@@ -18,6 +18,9 @@ class EnsureUserHasRole
             return $next($request);
         }
 
-        abort(403);
+        abort(response()->json([
+            'message' => 'Hata, yetkisiz işlem.',
+        ], 403));
+
     }
 }

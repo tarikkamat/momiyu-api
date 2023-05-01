@@ -19,11 +19,25 @@ use App\Http\Controllers\AuthController;
 Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function() {
+
+    // Logout Route
     Route::get('logout', [AuthController::class, 'logout']);
 
-    Route::prefix('categories')->group(function() {
-        Route::get('/', [CategoryController::class, 'getAllCategories']);
+    // Category Routes
+    Route::middleware('role:admin')->group(function() {
+
+        // Category List Route
+        Route::get('categories', [CategoryController::class, 'index']);
+
+        // Category CRUD Routes
+        Route::prefix('category')->group(function() {
+            Route::post('create', [CategoryController::class, 'store']);
+            Route::put('update', [CategoryController::class, 'update']);
+            Route::delete('delete', [CategoryController::class, 'destroy']);
+        });
+
     });
+
 });
 
 Route::get('check', function () {

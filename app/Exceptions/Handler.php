@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -27,4 +30,21 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+
+    /**
+     * @param $request
+     * @param Throwable $exception
+     * @return JsonResponse|Response|\Symfony\Component\HttpFoundation\Response
+     * @throws Throwable
+     */
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof AuthenticationException) {
+            return response()->json(['message' => 'Yetkisiz erişim. Lütfen oturum açın.'], 401);
+        }
+
+        return parent::render($request, $exception);
+    }
+
 }
