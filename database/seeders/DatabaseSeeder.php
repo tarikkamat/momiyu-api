@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::factory(8)->create();
         Category::factory()->count(10)->create();
 
         User::create([
@@ -29,12 +29,26 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
 
+        User::create([
+            'name' => 'customer',
+            'email' => 'customer@mail.com',
+            'password' => bcrypt('password'),
+            'role' => 'customer',
+            'email_verified_at' => '2021-04-30 14:00:00',
+            'remember_token' => Str::random(10)
+        ]);
+
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'customer']);
 
         DB::table('role_user')->insert([
             'role_id' => 1,
-            'user_id' => 11
+            'user_id' => 9
+        ]);
+
+        DB::table('role_user')->insert([
+            'role_id' => 1,
+            'user_id' => 10
         ]);
 
 
