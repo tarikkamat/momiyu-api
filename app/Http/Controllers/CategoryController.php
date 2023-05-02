@@ -33,6 +33,11 @@ class CategoryController extends Controller
     /**
      * Create a new category
      *
+     * @LRDparam name string|required|max:255
+     * @LRDparam slug string|required|max:255|unique:categories,slug
+     * @LRDparam description string|max:255
+     * @LRDparam icon string|max:255
+     * @LRDparam parent_id integer|exists:categories,id
      * @param RequestCreate $request
      * @return JsonResponse
      * @throws ValidationException
