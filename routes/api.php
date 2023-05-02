@@ -26,14 +26,12 @@ Route::middleware(['auth:sanctum'])->group(function() {
     // Category Routes
     Route::middleware('role:admin')->group(function() {
 
-        // Category List Route
-        Route::get('categories', [CategoryController::class, 'index']);
-
         // Category CRUD Routes
         Route::prefix('category')->group(function() {
-            Route::post('create', [CategoryController::class, 'store']);
-            Route::put('update', [CategoryController::class, 'update']);
-            Route::delete('delete', [CategoryController::class, 'destroy']);
+            Route::get('/', [CategoryController::class, 'index']);
+            Route::post('/', [CategoryController::class, 'store']);
+            Route::put('{id}', [CategoryController::class, 'update']);
+            Route::delete('{id}', [CategoryController::class, 'destroy']);
         });
 
     });

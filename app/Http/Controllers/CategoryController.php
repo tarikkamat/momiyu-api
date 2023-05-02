@@ -42,14 +42,7 @@ class CategoryController extends Controller
         $validatedData = $request->validated();
 
         try {
-            $category = new Category();
-            $category->name = $validatedData['name'];
-            $category->slug = Str::slug($validatedData['name']);
-            $category->description = $validatedData['description'];
-            $category->icon = $validatedData['icon'];
-            $category->parent_id = $validatedData['parent_id'];
-            $category->save();
-
+            $category = Category::create($validatedData);
             return response()->json([
                 'message' => 'Başarılı, kategori oluşturuldu.',
                 'category' => $category
@@ -70,17 +63,13 @@ class CategoryController extends Controller
      * @return JsonResponse
      * @throws ValidationException
      */
-    public function update(RequestUpdate $request, Category $category): JsonResponse
+    public function update(RequestUpdate $request): JsonResponse
     {
         $validatedData = $request->validated();
 
         try {
-            $category->name = $validatedData['name'];
-            $category->slug = Str::slug($validatedData['name']);
-            $category->description = $validatedData['description'];
-            $category->icon = $validatedData['icon'];
-            $category->parent_id = $validatedData['parent_id'];
-            $category->save();
+            $category = Category::firstWhere('id', $request->id);
+            $category->update($validatedData);
 
             return response()->json([
                 'message' => 'Başarılı, kategori güncellendi.',

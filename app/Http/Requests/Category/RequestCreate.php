@@ -47,8 +47,8 @@ class RequestCreate extends FormRequest
             'description.max' => 'Kategori açıklaması en fazla 255 karakter olmalıdır.',
             'icon.string' => 'Kategori ikonu metin olmalıdır.',
             'icon.max' => 'Kategori ikonu en fazla 255 karakter olmalıdır.',
-            'parent_id.integer' => 'Kategori üst kategorisi sayı olmalıdır.',
-            'parent_id.exists' => 'Kategori üst kategorisi veritabanında bulunmalıdır.'
+            'parent_id.integer' => 'Geçersiz üst kategori seçimi.',
+            'parent_id.exists' => 'Seçili üst kategori veritabanında bulunmamaktadır.'
         ];
     }
 }
