@@ -37,9 +37,3 @@ Route::middleware(['auth:sanctum'])->group(function() {
     });
 
 });
-
-Route::get('check', function () {
-    return response()->json([
-        'message' => 'Running',
-    ], 200);
-});
