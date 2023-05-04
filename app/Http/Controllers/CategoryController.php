@@ -20,8 +20,12 @@ class CategoryController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $categories = Category::all();
-            return response()->json($categories);
+            return response()->json([
+                'success' =>  true,
+                'code' => 200,
+                'message' => 'Başarılı, kategoriler getirildi.',
+                'users' => Category::all()
+            ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Hata, kategoriler getirilemedi.',
@@ -49,6 +53,8 @@ class CategoryController extends Controller
         try {
             $category = Category::create($validatedData);
             return response()->json([
+                'success' =>  true,
+                'code' => 200,
                 'message' => 'Başarılı, kategori oluşturuldu.',
                 'category' => $category
             ], 200);
@@ -73,10 +79,12 @@ class CategoryController extends Controller
         $validatedData = $request->validated();
 
         try {
-            $category = Category::firstWhere('id', $request->id);
+            $category = Category::findOrFail($request->id);
             $category->update($validatedData);
 
             return response()->json([
+                'success' =>  true,
+                'code' => 200,
                 'message' => 'Başarılı, kategori güncellendi.',
                 'category' => $category
             ], 200);
@@ -97,9 +105,11 @@ class CategoryController extends Controller
     public function destroy(Request $request): JsonResponse
     {
         try {
-            $category = Category::find($request->id);
+            $category = Category::findOrFail($request->id);
             $category->delete();
             return response()->json([
+                'success' =>  true,
+                'code' => 200,
                 'message' => 'Başarılı, kategori silindi.'
             ], 200);
         } catch (\Exception $e) {

@@ -37,17 +37,12 @@ class RequestCreate extends FormRequest
     {
         return [
             'name.required' => 'Kategori adı zorunludur.',
-            'name.string' => 'Kategori adı metin olmalıdır.',
             'name.max' => 'Kategori adı en fazla 255 karakter olmalıdır.',
             'slug.required' => 'Kategori slug\'ı zorunludur.',
-            'slug.string' => 'Kategori slug\'ı metin olmalıdır.',
             'slug.max' => 'Kategori slug\'ı en fazla 255 karakter olmalıdır.',
             'slug.unique' => 'Kategori slug\'ı benzersiz olmalıdır.',
-            'description.string' => 'Kategori açıklaması metin olmalıdır.',
             'description.max' => 'Kategori açıklaması en fazla 255 karakter olmalıdır.',
-            'icon.string' => 'Kategori ikonu metin olmalıdır.',
             'icon.max' => 'Kategori ikonu en fazla 255 karakter olmalıdır.',
-            'parent_id.integer' => 'Geçersiz üst kategori seçimi.',
             'parent_id.exists' => 'Seçili üst kategori veritabanında bulunmamaktadır.'
         ];
     }

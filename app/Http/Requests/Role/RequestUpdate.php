@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestLogin extends FormRequest
+class RequestUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,25 +22,21 @@ class RequestLogin extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|max:255',
-            'password' => 'required|max:255',
+            'name' => 'required|string|max:10|unique:roles,name,' . $this->id,
         ];
     }
 
     /**
      * Get the error messages for the defined validation rules.
      *
-     * @return array
+     * @return array<string, string>
      */
-    public function messages()
+    public function messages(): array
     {
         return [
-            'email.required' => 'E-posta alanı boş bırakılamaz!',
-            'email.email' => 'E-posta geçerli değil!',
-            'email.max' => 'E-posta uzunluğu çok fazla!',
-            'password.required' => 'Bu kısım boş bırakılamaz!',
-            'password.max' => 'Şifre uzunluğu çok fazla!',
+            'name.required' => 'Rol adı zorunludur.',
+            'name.max' => 'Rol adı en fazla 10 karakter olmalıdır.',
+            'name.unique' => 'Rol adı daha önce kullanılmıştır.',
         ];
     }
 }
-
