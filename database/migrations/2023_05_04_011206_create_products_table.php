@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('sku')->unique();
             $table->decimal('price', 10, 2);
             $table->integer('quantity');
             $table->enum('status', ['draft', 'active', 'inactive'])->default('draft');
-            $table->integer('synced_at')->nullable();
+            $table->date('synced_at')->nullable();
             $table->timestamps();
         });
     }

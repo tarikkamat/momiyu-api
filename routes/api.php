@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -50,6 +51,16 @@ Route::middleware(['auth:sanctum'])->group(function() {
             Route::post('/', [RoleController::class, 'store']);
             Route::put('{id}', [RoleController::class, 'update']);
             Route::delete('{id}', [RoleController::class, 'destroy']);
+        });
+
+        // Product CRUD Routes
+        Route::prefix('product')->group(function() {
+            Route::get('/', [ProductController::class, 'index']);
+            Route::post('/', [ProductController::class, 'store']);
+            Route::get('{id}', [ProductController::class, 'show']);
+            Route::put('{id}', [ProductController::class, 'update']);
+            Route::delete('{id}', [ProductController::class, 'destroy']);
+
         });
 
 

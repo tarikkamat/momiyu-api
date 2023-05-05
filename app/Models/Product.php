@@ -33,6 +33,12 @@ class Product extends Model
         return $this->hasMany(ProductAttribute::class);
     }
 
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
     /**
      * TODO: Add fillable property
      * TODO: Add relationship to Category
