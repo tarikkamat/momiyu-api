@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('sku')->unique();
             $table->decimal('price', 10, 2);
             $table->integer('quantity');
-            $table->boolean('status')->default(true);
+            $table->enum('status', ['draft', 'active', 'inactive'])->default('draft');
             $table->unsignedBigInteger('synced_at')->nullable();
             $table->timestamps();
         });

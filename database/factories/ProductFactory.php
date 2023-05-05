@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'sku' => $this->faker->unique()->numberBetween(1000, 9000),
             'price' => $this->faker->randomFloat(2, 10, 100),
             'quantity' => $this->faker->numberBetween(0, 100),
-            'status' => $this->faker->randomElement(['active', 'draft', 'archived']),
+            'status' => 'active',
             'synced_at' => $this->faker->dateTimeThisMonth()
         ];
     }
