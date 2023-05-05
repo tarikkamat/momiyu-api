@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->integer('quantity');
             $table->enum('status', ['draft', 'active', 'inactive'])->default('draft');
-            $table->unsignedBigInteger('synced_at')->nullable();
+            $table->integer('synced_at')->nullable();
             $table->timestamps();
         });
     }
