@@ -56,7 +56,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
         // Product CRUD Routes
         Route::prefix('product')->group(function() {
             Route::get('/', [ProductController::class, 'index']);
-            Route::post('/', [ProductController::class, 'store']);
+            Route::get('/{id}', [ProductController::class, 'show']);
         });
 
 
