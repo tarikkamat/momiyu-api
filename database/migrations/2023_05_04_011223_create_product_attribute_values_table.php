@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('product_attribute_values', function (Blueprint $table) {
             $table->id();
+            $table->string('value');
+            $table->unsignedBigInteger('attribute_id');
+            $table->foreign('attribute_id')->references('id')->on('product_attributes')->onDelete('cascade');
             $table->timestamps();
         });
     }
