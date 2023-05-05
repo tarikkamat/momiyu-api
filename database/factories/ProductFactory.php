@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomFloat(2, 10, 100),
             'quantity' => $this->faker->numberBetween(0, 100),
             'status' => 'active',
-            'synced_at' => $this->faker->dateTimeThisMonth()
+            'synced_at' => '2021-01-01 00:00:00'
         ];
     }
 }
